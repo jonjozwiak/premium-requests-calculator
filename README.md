@@ -46,14 +46,13 @@ docker build -t premium-requests-calculator:latest .
 Mount your input directory where you have your premium requests csv to `/data` in the container. Update the `INPUT_CSV` environment variable to point to your input CSV file. For example:
 
 ```sh
-docker run --rm -p 8501:8501 -v /path/to/your/data:/data \
+docker run --rm --name premium-requests-calculator -p 8501:8501 -v /path/to/your/data:/data \
   -e INPUT_CSV=/data/your_input.csv \
   premium-requests-calculator:latest
 ```
 
 - Access the Streamlit dashboard at [http://localhost:8501](http://localhost:8501).
-- When finished, you can stop the container with `Ctrl+C`.
-
+- When finished, you can stop the container with `Ctrl+C` a few times.  Also run `docker stop premium-requests-calculator` to stop the container. 
 
 ## Output CSVs
 - `requests_per_model.csv`: A CSV file containing the number of requests per model.
