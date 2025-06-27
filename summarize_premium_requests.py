@@ -21,7 +21,7 @@ last_col = df.columns[-1]
 df = df[df[last_col] != "Unlimited"]
 
 # Filter out rows where the last column is "2147483647"
-df = df[df[last_col] != "2147483647"]
+df = df[~df[last_col].isin(["2147483647", 2147483647])]
 
 # Group by model to get request counts, then calculate premium requests
 model_counts = df.groupby('model').size().reset_index(name='requests_used')
