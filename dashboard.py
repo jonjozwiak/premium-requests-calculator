@@ -99,7 +99,11 @@ df_raw['timestamp'] = pd.to_datetime(df_raw['timestamp'])
 
 # Filter out rows where the last column is "Unlimited"
 last_col = df_raw.columns[-1]
-df_raw = df_raw[df_raw[last_col] != "Unlimited"]
+df_raw = df_raw[
+    (df_raw[last_col] != "Unlimited") &
+    (df_raw[last_col] != 2147483647) &
+    (df_raw[last_col] != "2147483647")
+]
 
 # --- Visualizations ---
 
